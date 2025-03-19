@@ -1,54 +1,79 @@
-# React + TypeScript + Vite
+# Org Chart Frontend (React + Vite + TypeScript)
+## Overview
+This is a simple React app (built with Vite + TypeScript) that displays an organizational chart. It fetches employee data from a backend endpoint (by default http://localhost:8080/employees) and renders the results in a hierarchical (nested) list.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Prerequisites
+Node.js (14.x or later recommended)
+Yarn (or npm) installed globally
+### Getting Started
+Clone the repository (or download it).
 
-Currently, two official plugins are available:
+```bash
+git clone <your-repo>
+cd <your-repo>
+```
+### Install dependencies:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# using yarn
+yarn install
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# or using npm
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Set up environment variables:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+By default, the app tries to reach http://localhost:8080/employees.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### Run in development mode:
+
+```bash
+# using yarn
+yarn dev
+
+# or using npm
+npm run dev
 ```
+
+The app should be accessible at http://localhost:5173.
+
+(Optional) Build for production:
+
+```bash
+yarn build
+# or
+npm run build
+```
+This creates an optimized, production-ready bundle in the dist folder. To preview it locally:
+
+```bash
+yarn preview
+# or
+npm run preview
+```
+
+## Project Structure
+```bash
+.
+├── public/                # Static/public files
+└── src/
+    ├── assets/            # Images or other assets
+    ├── components/
+    │   ├── EmployeeCard.tsx  # Component to render a single employee’s info
+    │   └── OrgChart.tsx       # Main org chart component (renders nested employees)
+    ├── App.tsx                # Root-level component
+    ├── index.css              # Global CSS
+    ├── main.tsx               # React DOM entry point
+    ├── types.ts               # TypeScript interfaces (e.g., `Employee`)
+    └── vite-env.d.ts          # Vite-specific TypeScript declarations
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── yarn.lock (or package-lock.json)
+```
+### Usage
+Start your backend (if you have one) on http://localhost:8080.
+Run yarn dev (or npm run dev) to start the frontend.
+Visit http://localhost:5173 to see the org chart.
